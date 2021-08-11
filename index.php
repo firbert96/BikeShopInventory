@@ -41,7 +41,7 @@
 
         <!-- Custom fonts for this template-->
         <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-        <link href="css/font_nunito.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
         <!-- Custom styles for this template-->
         <link href="css/sb-admin-2.min.css" rel="stylesheet">
@@ -88,7 +88,7 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="src/Products/createProduct.php">
+            <a class="nav-link" href="createProduct.php">
             <i class="fa fa-list-alt"></i>
             <span>Create New Product</span></a>
         </li>
@@ -146,7 +146,7 @@
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                    <a class="dropdown-item" href="src/Users/editUser.php">
+                    <a class="dropdown-item" href="editUser.php">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Edit User
                     </a>
@@ -222,16 +222,21 @@
                                     echo "<td class='center'>";
                                     
                                     //edit product 
-                                    echo "<a href='src/Products/editProduct.php?id=".$row['id']."' class='btn btn-primary' style='margin:10px'>";
+                                    echo "<a href='editProduct.php?id=".$row['id']."' class='btn btn-primary' style='margin:10px'>";
                                     echo "<span class='text'>Edit Product</span>";
                                     echo "</a>";
 
                                     //edit quantity
-                                    echo "<a href='src/Products/editQuantity.php?id=".$row['id']."' class='btn btn-warning' style='margin:10px'>";
+                                    echo "<a href='editQuantity.php?id=".$row['id']."' class='btn btn-warning' style='margin:10px'>";
                                     echo "<span class='text'>Edit Quantity</span>";
                                     echo "</a>";
 
                                     //delete
+                                    // echo "<a onClick=\"javascript: return confirm('Please confirm deletion');\" href='deleteProduct.php?id=".$row['id']."' class='btn btn-danger' style='margin:10px'>";
+                                    // echo "<span class='text'>Delete Product</span>";
+                                    // echo "</a>";
+                                    // echo "</td>";
+                                    // echo "</tr>";
 
                                     echo "<button id='".$row['id']."' class='btn btn-danger delete' style='margin:10px'>";
                                     echo "<span class='text'>Delete Product</span>";
@@ -298,7 +303,7 @@
             <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
             <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="src/Users/logout.php">Logout</a>
+            <a class="btn btn-primary" href="logout.php">Logout</a>
             </div>
         </div>
         </div>
@@ -335,7 +340,7 @@
                 var id = this.id;
                 $.ajax({
                     type: "GET",
-                    url: 'src/Products/deleteProduct.php?id='+id,
+                    url: 'deleteProduct.php?id='+id,
                     data: {},
                     success: function(response)
                     {

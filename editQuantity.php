@@ -1,24 +1,24 @@
 <?php
     session_start();
-    require_once("../../function/validate.php");
+    require_once("function/validate.php");
     $validate = new Validate();
     $validate->alreadyLogin($_SESSION["user_id"]);
     
-    require_once("../../database/database.php");
-    require_once("../../database/inventory.php");
+    require_once("database/database.php");
+    require_once("database/inventory.php");
     $db = new Inventory();
     $id = $_GET["id"];
     $auditor_id = $_SESSION["user_id"];
-
-    if(isset($_POST["submit"]) || !empty($_POST["submit"]))
-    {
+    if(isset($_POST["submit"]) || !empty($_POST["submit"])){
         $quantity = (int)$_POST["quantity"];
         $changer = (int)$_POST["changer"];
         $changer_name = $_POST["changer_name"];
         $product_id = (int)$_POST["id"];
-        if($quantity <= 0) 
+
+        if($quantity <= 0)
         {
-            $message = "Cannot buy product because quantity of product isn\'t enough";
+            $message = "Cannot quantity because quantity of product <= 0";
+            // $header = "Refresh: 0; url=editQuantity.php?id=".$product_id;
             echo '<script language="Javascript" type="text/javascript">';
             echo 'alert('. json_encode($message) .');';
             echo '</script>';
@@ -28,15 +28,15 @@
             $result = $db->editQuantity($product_id,$auditor_id,$quantity,$changer,$changer_name);
             if($result){
                 $message= "Update quantity product successful";
-                $header = "Refresh: 0; url=../../index.php";  
+                $header = "Refresh: 0; url=index.php";  
                 echo '<script language="Javascript" type="text/javascript">';
                 echo 'alert('. json_encode($message) .');';
                 echo '</script>';
                 header($header);   
             }
-            else
-            {
+            else{
                 $message = "Cannot buy product because quantity of product isn\'t enough";
+                // $header = "Refresh: 0; url=editQuantity.php?id=".$product_id;
                 echo '<script language="Javascript" type="text/javascript">';
                 echo 'alert('. json_encode($message) .');';
                 echo '</script>';
@@ -57,11 +57,11 @@
         <title>Edit Quantity</title>
 
         <!-- Custom fonts for this template-->
-        <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-        <link href="../../css/font_nunito.css" rel="stylesheet">
+        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
         <!-- Custom styles for this template-->
-        <link href="../../css/sb-admin-2.min.css" rel="stylesheet">       
+        <link href="css/sb-admin-2.min.css" rel="stylesheet">       
     </head>
     <body class="bg-gradient-primary">
         <div class="container">
@@ -113,13 +113,13 @@
 
 
         <!-- Bootstrap core JavaScript-->
-        <script src="../../vendor/jquery/jquery.min.js"></script>
-        <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <!-- Core plugin JavaScript-->
-        <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
         <!-- Custom scripts for all pages-->
-        <script src="../../js/sb-admin-2.min.js"></script>
+        <script src="js/sb-admin-2.min.js"></script>
     </body>
 </html>

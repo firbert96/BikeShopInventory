@@ -7,6 +7,8 @@ This Is basic bike shop inventory (CRUD). It has several features like login, re
 ### First Config
 - Install XAMPP for PHP 7.4
 - Download this project to C:\xampp\htdocs\
+- Create new Database with name bike_shop_inventory in http://localhost/phpmyadmin/
+- Import Database bike_shop_inventory.sql 
 
 ### Run In Broswer
 http://localhost:PORT/nameThisProject
